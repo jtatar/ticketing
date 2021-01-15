@@ -11,7 +11,7 @@ build:
     - image: metexo/auth
       context: auth
       docker:
-        dockerfile: Dockerfile
+        dockerfile: dockerfile
       sync:
         manual:
           - src: 'src/**/*.ts'

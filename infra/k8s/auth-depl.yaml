@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: metexo/auth
+          image: metexo/auth:latest
 ---
 apiVersion: v1
 kind: Service
