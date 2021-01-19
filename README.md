@@ -1,3 +1,3 @@
 # typescript
 
-typescript microservices app
+typescript microservices ticketing app
