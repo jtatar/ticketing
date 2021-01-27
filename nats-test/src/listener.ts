@@ -7,7 +7,12 @@ const stan = nats.connect('ticketing', randomBytes(4).toString('hex'), {
   url: 'http://localhost:4222',
 });
 
-const options = stan.subscriptionOptions().setManualAckMode(true);
+const options = stan
+  .subscriptionOptions()
+  .setManualAckMode(true)
+  .setDeliverAllAvailable()
+  .setDurableName('accounting-service');
+
 stan.on('connect', () => {
   console.log('Listener connected to NATS');
 
@@ -18,7 +23,7 @@ stan.on('connect', () => {
 
   const subscription = stan.subscribe(
     'ticket:created',
-    'orders-service-queue-group',
+    'queue-group-name',
     options
   );
 
@@ -33,4 +38,6 @@ stan.on('connect', () => {
 });
 
 process.on('SIGINT', () => stan.close());
+
+//wont work on windows
 process.on('SIGTERM', () => stan.close());
